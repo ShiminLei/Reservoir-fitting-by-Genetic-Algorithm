@@ -1,0 +1,19 @@
+function [a,b]=cross(M1,M2,lamda)
+%功能：交叉函数，将M1和M2交叉
+%为保证约束条件满足，bw和bo采用算术平均交叉，aw采用指数交叉
+lamda1=lamda;
+lamda2=1-lamda;
+aw1=M1(1);
+aw2=M2(1);
+bw1=M1(2);
+bw2=M2(2);
+bo1=M1(3);
+bo2=M2(3);
+aw3=aw1^lamda1*aw2^lamda2;
+aw4=aw2^lamda1*aw1^lamda2;
+bw3=bw1*lamda1+bw2*lamda2;
+bw4=bw2*lamda1+bw1*lamda2;
+bo3=bo1*lamda1+bo2*lamda2;
+bo4=bo2*lamda1+bo1*lamda2;
+a=[aw3,bw3,bo3];
+b=[aw4,bw4,bo4];
